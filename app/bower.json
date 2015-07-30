@@ -1,0 +1,15 @@
+{
+  "name": "wycliffe bible reader",
+  "version": "0.0.0",
+  "authors": [
+    "VICKY LEONG <VLEONG2332@GMAIL.COM>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
