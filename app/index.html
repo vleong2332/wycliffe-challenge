@@ -4,6 +4,7 @@
    <meta charset="UTF-8">
    <title>Simple Bible Reader</title>
    <!-- SCRIPT -->
+   <!-- <script type="text/javascript" src-"jquery-1.11.3.min.js"></script> -->
    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
    <script type="text/javascript" src="script.js"></script>
    <!-- STYLE -->
@@ -13,7 +14,24 @@
 </head>
 <body ng-controller="mainCtrl">
 
-   <h1>Test</h1>
+   <div id="user-selection">
+      <h3>Language:</h3>
+      <select id="userLang" ng-model="userLang" ng-change="updateVersions()">
+         <option ng-repeat="langCode in data.langCodes" ng-value="{{langCode}}">{{ langCode }}</option>
+      </select>
+      <h3>Version:</h3>
+      <select id="userVersion" ng-model="userVersion" ng-change="updateBooks()">
+         <option ng-repeat="version in data.versions" ng-value="{{version}}">{{ version }}</option>
+      </select>
+      <h3>Book:</h3>
+      <select id="userBook" ng-model="userBook" ng-change="updateView()">
+         <option ng-repeat="book in data.books"  ng-value="{{book}}">{{ book }}</option>
+      </select>
+   </div>
+
+   <div id="user-view">
+      <div id="view"></div>
+   </div>
    
 </body>
 </html>
