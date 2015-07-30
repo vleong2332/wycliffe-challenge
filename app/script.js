@@ -11,20 +11,20 @@ bibleReader.run(function($rootScope, fetchData) {
    // console.log('Run is running');
    $rootScope.ready = false;
    $rootScope.data = {
-      langCodes: [],
-      langNames: [],
-      versions: [],
-      books: [],
-      text: null,
+      langCodes:  [],
+      langNames:  [],
+      versions:   [],
+      books:      [],
+      text:       null,
       parsedText: []
    };
-   $rootScope.userLang = "";
-   $rootScope.userVersion = "";
-   $rootScope.userBook = "";
-   $rootScope.userView = "";
-   $rootScope.userLangIndex = null;
+   $rootScope.userLang         = "";
+   $rootScope.userVersion      = "";
+   $rootScope.userBook         = "";
+   $rootScope.userView         = "";
+   $rootScope.userLangIndex    = null;
    $rootScope.userVersionIndex = null;
-   $rootScope.userBookIndex = null;
+   $rootScope.userBookIndex    = null;
    fetchData();
 });
 
@@ -62,13 +62,13 @@ bibleReader.factory('fetchText', function($rootScope, $http) {
          url: SRC
       })
       .success(function(data) {
-         // console.log('fetching success', data);
+
          $rootScope.data.text = data.split('\n');
          $rootScope.data.parsedText = [];
          angular.forEach($rootScope.data.text, function(value, index) {
             $rootScope.data.parsedText.push($rootScope.parseUSFM(value));
          });
-         // console.log($rootScope.data.parsedText);
+
          angular.element(document.getElementById('view')).children().remove();
          $rootScope.processEntry($rootScope.data.parsedText);
       })
@@ -174,6 +174,9 @@ bibleReader.controller('mainCtrl', function($rootScope, fetchText) {
          }
          if (value.tag === "\\v") {
             var element = "<p><span class=\"verse-num\">" + value.number + ".</span> " + value.text + "</h3>";
+         }
+         if (value.tag === "\\s5") {
+            var element = "<p class=\"section\"></p>";
          }
          angular.element(document.getElementById('view')).append(element);
       });
